@@ -2,9 +2,12 @@
 include 'plantilla/cabeza.php';
 $situacion = "";
 $area = "";
+
+/*
 if ($au[5] == 2) {
 	header("Location: index.php");
 }
+*/
  ?>		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
@@ -48,4 +51,6 @@ if ($au[5] == 2) {
 	</div>	<!--/.main-->
 <?php 
 include 'plantilla/pies.php';
+ob_end_flush();
+
  ?>

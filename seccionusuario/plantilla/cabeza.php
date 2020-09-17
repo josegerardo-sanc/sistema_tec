@@ -2,8 +2,13 @@
 include 'class_mapeosat.php';
 $mapeosat = new mapeo();
 
+ob_start();
+
+
  //seguridad 
-@session_start();
+ if(!isset($_SESSION)){
+	session_start();
+  }
 if($_SESSION["autentica"] != "SAT"){
 header('Location: ../index.php');
 exit();	
@@ -35,6 +40,9 @@ if (isset($_POST['pass'])) {
 	<link href="../css/datepicker3.css" rel="stylesheet">
 	<link href="../css/styles.css" rel="stylesheet">
 	
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.7/css/fixedHeader.bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.bootstrap.min.css">
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	<!--[if lt IE 9]>
@@ -77,8 +85,9 @@ if (isset($_POST['pass'])) {
 		<ul class="nav menu">
 			<li><a href="index.php"><em class="fa fa-home">&nbsp;</em> Inicio</a></li>
 			<li><a href="mapeosat.php"><em class="fa fa-desktop">&nbsp;</em> Mapeosat</a></li>
-			<?php if ($au[5] == 1): ?>
 			<li><a href="utileria.php"><i class="fa fa-database"></i> Utileria</a></li>
+			<?php if ($au[5] == 1): ?>
+			
 			<li><a href="usuario.php"><i class="fa fa-users"></i> Usuarios</a></li>
 			<?php endif ?>
 			

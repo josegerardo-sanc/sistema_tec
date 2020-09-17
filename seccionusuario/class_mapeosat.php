@@ -1,5 +1,8 @@
 <?php 
 include 'sql.php';
+if(!isset($_SESSION)){
+	session_start();
+  }
 class mapeo extends SQL
 {
 	public function cambiarcontrasenia($id,$contrasenia)
@@ -88,6 +91,7 @@ class mapeo extends SQL
 			
 		}
 	}
+	
 	public function TablaMapeosat($valor, $area, $tusuario)
 	{
 		$cm = "";
@@ -310,17 +314,37 @@ class mapeo extends SQL
 	}
 	public function RegistrarMapeosat($nome, $ubsw, $nopa, $nopu, $nosw, $sesw, $pusw, $tieq, $admi, $area, $vlan, $acti, $obse, $sino)
 	{
-		$this->query("INSERT INTO mapeosat(nomenclaturanodo, idubicacionswitch, nopatchpanel, nopuertopatchpanel, noswitch, serieswitch, puertoswitch, idtipoequipo, idadministracion, area, vlan, idactividad, observaciones, idsituacionnodo) VALUES('$nome', '$ubsw', '$nopa', '$nopu', '$nosw', '$sesw', '$pusw', '$tieq', '$admi', '$area', '$vlan', '$acti', '$obse', '$sino')");
-		return '
-		<div class="alert bg-teal" role="alert"><em class="fa fa-lg fa-warning">&nbsp;</em> Registro exitoso. <a href="mapeosat.php" class="pull-right"><em class="fa fa-lg fa-close"></em></a></div>
-		';
+		/*$this->query("INSERT INTO mapeosat(nomenclaturanodo, idubicacionswitch, nopatchpanel, nopuertopatchpanel, 
+		noswitch, serieswitch, puertoswitch, idtipoequipo, idadministracion, area, vlan, idactividad, observaciones, idsituacionnodo) 
+		VALUES('$nome', '$ubsw', '$nopa', '$nopu', '$nosw', '$sesw', '$pusw', '$tieq', '$admi', '$area', '$vlan', '$acti', '$obse', '$sino')");
+		*/
+
+		$this->query("INSERT INTO 
+		`mapeosat`(`nomenclaturanodo`, `idubicacionswitch`, `idnopatchpanel`, `nopuertopatchpanel`, `idnoswitch`, `idserieswitch`,`puertoswitch`, `idtipoequipo`, 
+		`idadministracion`, `idarea`, `idvlan`, `idactividad`, `observaciones`, `idsituacionnodo`) 
+		VALUES('$nome', '$ubsw', '$nopa', '$nopu', '$nosw', '$sesw', '$pusw', '$tieq', '$admi', '$area', '$vlan', '$acti', '$obse', '$sino')");
+	
+		$_SESSION['status_register']='200';
 	}
 	public function ActualizarMapeosat($id, $nome, $ubsw, $nopa, $nopu, $nosw, $sesw, $pusw, $tieq, $admi, $area, $vlan, $acti, $obse, $sino)
 	{
-		$this->query("UPDATE mapeosat SET nomenclaturanodo = '$nome', idubicacionswitch = '$ubsw', nopatchpanel = '$nopa', nopuertopatchpanel = '$nopu', noswitch = '$nosw', serieswitch = '$sesw', puertoswitch = '$pusw', idtipoequipo = '$tieq', idadministracion = '$admi', area = '$area', vlan = '$vlan', idactividad = '$acti', observaciones = '$obse', idsituacionnodo = '$sino' WHERE idno = '$id'");
-		return '
+
+		$this->query("UPDATE mapeosat SET nomenclaturanodo = '$nome', 
+		idubicacionswitch = '$ubsw', idnopatchpanel = '$nopa', nopuertopatchpanel = '$nopu', 
+		idnoswitch = '$nosw', idserieswitch = '$sesw', puertoswitch = '$pusw', idtipoequipo = '$tieq', 
+		idadministracion = '$admi', idarea = '$area', idvlan = '$vlan', idactividad = '$acti', 
+		observaciones = '$obse', idsituacionnodo = '$sino' WHERE idno = '$id'");
+		
+		
+		$_SESSION['status_update']='200';
+		/*return '
 		<div class="alert bg-teal" role="alert"><em class="fa fa-lg fa-warning">&nbsp;</em> Actualización exitosa. <a href="mapeosat.php" class="pull-right"><em class="fa fa-lg fa-close"></em></a></div>
-		';
+		';*/
+	}
+
+	public function DeleteRow($id){
+		$this->query("DELETE FROM `mapeosat` WHERE idno='$id'");
+		$_SESSION['status_delete']='200';
 	}
 	public function respaldarTablaMapeoSAT()
 	{
@@ -438,6 +462,5 @@ class mapeo extends SQL
 		</div>
 		<?php
 	}
-
 }
  ?>
