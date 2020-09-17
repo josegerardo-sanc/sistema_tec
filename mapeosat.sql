@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-09-2020 a las 23:56:31
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.2
+-- Tiempo de generación: 17-09-2020 a las 21:35:48
+-- Versión del servidor: 10.4.13-MariaDB
+-- Versión de PHP: 7.2.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -153,24 +152,7 @@ CREATE TABLE `mapeosat` (
 --
 
 INSERT INTO `mapeosat` (`idno`, `nomenclaturanodo`, `idubicacionswitch`, `idnopatchpanel`, `nopuertopatchpanel`, `idnoswitch`, `idserieswitch`, `puertoswitch`, `idtipoequipo`, `idadministracion`, `idarea`, `idvlan`, `idactividad`, `observaciones`, `idsituacionnodo`) VALUES
-(1, 'IDF10-01-D89', 1, 2, '89', 2, 3, '14', 1, 6, 5, 1, 1, 'sinobservacion', 1),
-(2, 'IDF10-01-D88', 1, 1, '88', 2, 2, '33', 1, 6, 5, 2, 1, NULL, 1),
-(3, 'IDF10-01-D136', 1, 2, '136', 2, 1, '5', 3, 6, 4, 1, 1, '', 1),
-(4, 'IDF10-01-D111', 1, 1, '111', 3, 2, '27', 1, 6, 5, 2, 1, '', 1),
-(5, 'IDF10-01-D131', 1, 2, 'VACIO', 3, 1, 'VACIO', 5, 9, 2, 3, 4, '', 2),
-(6, 'IDF10-01-D37', 1, 1, 'VACIO', 2, 2, 'VACIO', 5, 9, 7, 3, 4, '', 2),
-(7, 'IDF10-01-D95', 1, 3, 'VACIO', 1, 1, 'VACIO', 5, 9, 3, 3, 4, NULL, 2),
-(8, 'MDF1MZA-01-D101', 1, 1, '101', 1, 2, '46', 3, 7, 2, 3, 3, NULL, 1),
-(9, 'MDF1MZA-01-D102', 1, 2, '102', 2, 3, '16', 3, 7, 2, 3, 3, NULL, 1),
-(10, 'MDF1MZA-01-D100', 1, 1, '100', 3, 3, '11', 3, 7, 2, 2, 3, NULL, 1),
-(11, 'MDF1MZA-01-D107', 1, 2, 'VACIO', 2, 2, 'VACIO', 5, 9, 1, 2, 4, NULL, 2),
-(12, 'MDF1MZA-01-D125', 1, 3, 'VACIO', 1, 1, 'VACIO', 5, 9, 1, 2, 4, NULL, 2),
-(13, 'MDF1MZA-01-D130', 1, 1, 'VACIO', 1, 3, 'VACIO', 5, 9, 2, 3, 4, NULL, 2),
-(14, 'IDF11-02-D10', 1, 1, '10', 2, 1, '5', 3, 5, 3, 1, 2, NULL, 1),
-(15, 'IDF11-02-D11', 1, 2, '11', 3, 1, '10', 3, 2, 4, 1, 2, NULL, 1),
-(16, 'IDF11-02-D12', 1, 2, '12', 3, 2, '4', 1, 5, 5, 1, 2, NULL, 1),
-(17, 'IDF11-02-D251', 1, 1, 'VACIO', 3, 2, 'VACIO', 5, 9, 6, 1, 4, NULL, 2),
-(18, 'IDF11-02-D350', 1, 3, 'VACIO', 3, 3, 'VACIO', 5, 9, 7, 2, 4, NULL, 2);
+(6, '4update', 1, 1, '2.1', 1, 1, '2.2', 1, 1, 1, 1, 1, '4update', 1);
 
 -- --------------------------------------------------------
 
@@ -431,103 +413,68 @@ CREATE TABLE `vw_area` (
 -- --------------------------------------------------------
 
 --
--- Estructura Stand-in para la vista `vw_mapeosat`
--- (Véase abajo para la vista actual)
+-- Estructura de tabla para la tabla `vw_noswitch`
 --
-CREATE TABLE `vw_mapeosat` (
-`idno` int(5)
-,`nomenclaturanodo` varchar(30)
-,`ubicacionswitch` varchar(6)
-,`nopatchpanel` varchar(5)
-,`nopuertopatchpanel` varchar(5)
-,`noswitch` varchar(15)
-,`serieswitch` varchar(15)
-,`puertoswitch` varchar(5)
-,`tipoequipo` varchar(25)
-,`administracion` varchar(25)
-,`area` varchar(40)
-,`vlan` char(5)
-,`actividad` varchar(30)
-,`observaciones` varchar(200)
-,`situacionnodo` varchar(20)
-);
 
--- --------------------------------------------------------
-
---
--- Estructura Stand-in para la vista `vw_nopatchpanel`
--- (Véase abajo para la vista actual)
---
-CREATE TABLE `vw_nopatchpanel` (
-`idnopatchpanel` int(5)
-,`nopatchpanel` varchar(5)
-);
-
--- --------------------------------------------------------
-
---
--- Estructura Stand-in para la vista `vw_noswitch`
--- (Véase abajo para la vista actual)
---
 CREATE TABLE `vw_noswitch` (
-`idnoswitch` int(5)
-,`noswitch` varchar(15)
-);
+  `idnoswitch` int(5) DEFAULT NULL,
+  `noswitch` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura Stand-in para la vista `vw_serieswitch`
--- (Véase abajo para la vista actual)
+-- Estructura de tabla para la tabla `vw_serieswitch`
 --
+
 CREATE TABLE `vw_serieswitch` (
-`idserieswitch` int(5)
-,`serieswitch` varchar(15)
-);
+  `idserieswitch` int(5) DEFAULT NULL,
+  `serieswitch` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura Stand-in para la vista `vw_situacionnodo`
--- (Véase abajo para la vista actual)
+-- Estructura de tabla para la tabla `vw_situacionnodo`
 --
+
 CREATE TABLE `vw_situacionnodo` (
-`idsituacionnodo` int(5)
-,`situacionnodo` varchar(20)
-);
+  `idsituacionnodo` int(5) DEFAULT NULL,
+  `situacionnodo` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura Stand-in para la vista `vw_tipoequipo`
--- (Véase abajo para la vista actual)
+-- Estructura de tabla para la tabla `vw_tipoequipo`
 --
+
 CREATE TABLE `vw_tipoequipo` (
-`idtipoequipo` int(5)
-,`tipoequipo` varchar(25)
-);
+  `idtipoequipo` int(5) DEFAULT NULL,
+  `tipoequipo` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura Stand-in para la vista `vw_ubicacionswitch`
--- (Véase abajo para la vista actual)
+-- Estructura de tabla para la tabla `vw_ubicacionswitch`
 --
+
 CREATE TABLE `vw_ubicacionswitch` (
-`idubicacionswitch` int(5)
-,`ubicacionswitch` varchar(6)
-);
+  `idubicacionswitch` int(5) DEFAULT NULL,
+  `ubicacionswitch` varchar(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura Stand-in para la vista `vw_vlan`
--- (Véase abajo para la vista actual)
+-- Estructura de tabla para la tabla `vw_vlan`
 --
+
 CREATE TABLE `vw_vlan` (
-`idvlan` int(5)
-,`vlan` char(5)
-);
+  `idvlan` int(5) DEFAULT NULL,
+  `vlan` char(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -556,271 +503,25 @@ DROP TABLE IF EXISTS `vw_area`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_area`  AS  select `area`.`idarea` AS `idarea`,`area`.`area` AS `area` from `area` ;
 
--- --------------------------------------------------------
-
---
--- Estructura para la vista `vw_mapeosat`
---
-DROP TABLE IF EXISTS `vw_mapeosat`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_mapeosat`  AS  select `idno` AS `idno`,`nomenclaturanodo` AS `nomenclaturanodo`,`ubicacionswitch`.`ubicacionswitch` AS `ubicacionswitch`,`nopatchpanel`.`nopatchpanel` AS `nopatchpanel`,`nopuertopatchpanel` AS `nopuertopatchpanel`,`noswitch`.`noswitch` AS `noswitch`,`serieswitch`.`serieswitch` AS `serieswitch`,`puertoswitch` AS `puertoswitch`,`tipoequipo`.`tipoequipo` AS `tipoequipo`,`administracion`.`administracion` AS `administracion`,`area`.`area` AS `area`,`vlan`.`vlan` AS `vlan`,`actividad`.`actividad` AS `actividad`,`observaciones` AS `observaciones`,`situacionnodo`.`situacionnodo` AS `situacionnodo` from ((((((((((`mapeosat` join `ubicacionswitch` on(`idubicacionswitch` = `ubicacionswitch`.`idubicacionswitch`)) join `nopatchpanel` on(`idnopatchpanel` = `nopatchpanel`.`idnopatchpanel`)) join `noswitch` on(`idnoswitch` = `noswitch`.`idnoswitch`)) join `serieswitch` on(`idserieswitch` = `serieswitch`.`idserieswitch`)) join `tipoequipo` on(`idtipoequipo` = `tipoequipo`.`idtipoequipo`)) join `administracion` on(`idadministracion` = `administracion`.`idadministracion`)) join `area` on(`idarea` = `area`.`idarea`)) join `vlan` on(`idvlan` = `vlan`.`idvlan`)) join `actividad` on(`idactividad` = `actividad`.`idactividad`)) join `situacionnodo` on(`idsituacionnodo` = `situacionnodo`.`idsituacionnodo`)) ;
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `vw_nopatchpanel`
---
-DROP TABLE IF EXISTS `vw_nopatchpanel`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_nopatchpanel`  AS  select `nopatchpanel`.`idnopatchpanel` AS `idnopatchpanel`,`nopatchpanel`.`nopatchpanel` AS `nopatchpanel` from `nopatchpanel` ;
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `vw_noswitch`
---
-DROP TABLE IF EXISTS `vw_noswitch`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_noswitch`  AS  select `noswitch`.`idnoswitch` AS `idnoswitch`,`noswitch`.`noswitch` AS `noswitch` from `noswitch` ;
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `vw_serieswitch`
---
-DROP TABLE IF EXISTS `vw_serieswitch`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_serieswitch`  AS  select `serieswitch`.`idserieswitch` AS `idserieswitch`,`serieswitch`.`serieswitch` AS `serieswitch` from `serieswitch` ;
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `vw_situacionnodo`
---
-DROP TABLE IF EXISTS `vw_situacionnodo`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_situacionnodo`  AS  select `situacionnodo`.`idsituacionnodo` AS `idsituacionnodo`,`situacionnodo`.`situacionnodo` AS `situacionnodo` from `situacionnodo` ;
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `vw_tipoequipo`
---
-DROP TABLE IF EXISTS `vw_tipoequipo`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_tipoequipo`  AS  select `tipoequipo`.`idtipoequipo` AS `idtipoequipo`,`tipoequipo`.`tipoequipo` AS `tipoequipo` from `tipoequipo` ;
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `vw_ubicacionswitch`
---
-DROP TABLE IF EXISTS `vw_ubicacionswitch`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_ubicacionswitch`  AS  select `ubicacionswitch`.`idubicacionswitch` AS `idubicacionswitch`,`ubicacionswitch`.`ubicacionswitch` AS `ubicacionswitch` from `ubicacionswitch` ;
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `vw_vlan`
---
-DROP TABLE IF EXISTS `vw_vlan`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_vlan`  AS  select `vlan`.`idvlan` AS `idvlan`,`vlan`.`vlan` AS `vlan` from `vlan` ;
-
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `actividad`
---
-ALTER TABLE `actividad`
-  ADD PRIMARY KEY (`idactividad`);
-
---
--- Indices de la tabla `administracion`
---
-ALTER TABLE `administracion`
-  ADD PRIMARY KEY (`idadministracion`);
-
---
--- Indices de la tabla `area`
---
-ALTER TABLE `area`
-  ADD PRIMARY KEY (`idarea`);
-
---
 -- Indices de la tabla `mapeosat`
 --
 ALTER TABLE `mapeosat`
-  ADD PRIMARY KEY (`idno`),
-  ADD KEY `idadministracion` (`idadministracion`),
-  ADD KEY `idtipoequipo` (`idtipoequipo`),
-  ADD KEY `idactividad` (`idactividad`),
-  ADD KEY `idsituacionnodo` (`idsituacionnodo`),
-  ADD KEY `idubicacionswitch` (`idubicacionswitch`) USING BTREE,
-  ADD KEY `idnopatchpanel` (`idnopatchpanel`),
-  ADD KEY `idnoswitch` (`idnoswitch`),
-  ADD KEY `idserieswitch` (`idserieswitch`),
-  ADD KEY `idvlan` (`idvlan`),
-  ADD KEY `idarea` (`idarea`);
-
---
--- Indices de la tabla `nopatchpanel`
---
-ALTER TABLE `nopatchpanel`
-  ADD PRIMARY KEY (`idnopatchpanel`);
-
---
--- Indices de la tabla `noswitch`
---
-ALTER TABLE `noswitch`
-  ADD PRIMARY KEY (`idnoswitch`);
-
---
--- Indices de la tabla `serieswitch`
---
-ALTER TABLE `serieswitch`
-  ADD PRIMARY KEY (`idserieswitch`);
-
---
--- Indices de la tabla `situacionnodo`
---
-ALTER TABLE `situacionnodo`
-  ADD PRIMARY KEY (`idsituacionnodo`);
-
---
--- Indices de la tabla `tipoequipo`
---
-ALTER TABLE `tipoequipo`
-  ADD PRIMARY KEY (`idtipoequipo`);
-
---
--- Indices de la tabla `tipousuario`
---
-ALTER TABLE `tipousuario`
-  ADD PRIMARY KEY (`idtipousuario`);
-
---
--- Indices de la tabla `ubicacionswitch`
---
-ALTER TABLE `ubicacionswitch`
-  ADD PRIMARY KEY (`idubicacionswitch`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`idusuarios`),
-  ADD KEY `idtipousuario` (`idtipousuario`);
-
---
--- Indices de la tabla `vlan`
---
-ALTER TABLE `vlan`
-  ADD PRIMARY KEY (`idvlan`);
+  ADD PRIMARY KEY (`idno`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `actividad`
---
-ALTER TABLE `actividad`
-  MODIFY `idactividad` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `administracion`
---
-ALTER TABLE `administracion`
-  MODIFY `idadministracion` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT de la tabla `area`
---
-ALTER TABLE `area`
-  MODIFY `idarea` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-
---
 -- AUTO_INCREMENT de la tabla `mapeosat`
 --
 ALTER TABLE `mapeosat`
-  MODIFY `idno` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT de la tabla `nopatchpanel`
---
-ALTER TABLE `nopatchpanel`
-  MODIFY `idnopatchpanel` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT de la tabla `noswitch`
---
-ALTER TABLE `noswitch`
-  MODIFY `idnoswitch` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT de la tabla `serieswitch`
---
-ALTER TABLE `serieswitch`
-  MODIFY `idserieswitch` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT de la tabla `situacionnodo`
---
-ALTER TABLE `situacionnodo`
-  MODIFY `idsituacionnodo` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `tipoequipo`
---
-ALTER TABLE `tipoequipo`
-  MODIFY `idtipoequipo` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de la tabla `tipousuario`
---
-ALTER TABLE `tipousuario`
-  MODIFY `idtipousuario` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `idusuarios` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `vlan`
---
-ALTER TABLE `vlan`
-  MODIFY `idvlan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `mapeosat`
---
-ALTER TABLE `mapeosat`
-  ADD CONSTRAINT `mapeosat_ibfk_1` FOREIGN KEY (`idadministracion`) REFERENCES `administracion` (`idadministracion`),
-  ADD CONSTRAINT `mapeosat_ibfk_10` FOREIGN KEY (`idarea`) REFERENCES `area` (`idarea`),
-  ADD CONSTRAINT `mapeosat_ibfk_2` FOREIGN KEY (`idtipoequipo`) REFERENCES `tipoequipo` (`idtipoequipo`),
-  ADD CONSTRAINT `mapeosat_ibfk_3` FOREIGN KEY (`idactividad`) REFERENCES `actividad` (`idactividad`),
-  ADD CONSTRAINT `mapeosat_ibfk_4` FOREIGN KEY (`idsituacionnodo`) REFERENCES `situacionnodo` (`idsituacionnodo`),
-  ADD CONSTRAINT `mapeosat_ibfk_5` FOREIGN KEY (`idubicacionswitch`) REFERENCES `ubicacionswitch` (`idubicacionswitch`),
-  ADD CONSTRAINT `mapeosat_ibfk_6` FOREIGN KEY (`idnopatchpanel`) REFERENCES `nopatchpanel` (`idnopatchpanel`),
-  ADD CONSTRAINT `mapeosat_ibfk_7` FOREIGN KEY (`idnoswitch`) REFERENCES `noswitch` (`idnoswitch`),
-  ADD CONSTRAINT `mapeosat_ibfk_8` FOREIGN KEY (`idserieswitch`) REFERENCES `serieswitch` (`idserieswitch`),
-  ADD CONSTRAINT `mapeosat_ibfk_9` FOREIGN KEY (`idvlan`) REFERENCES `vlan` (`idvlan`);
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`idtipousuario`) REFERENCES `tipousuario` (`idtipousuario`);
+  MODIFY `idno` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
