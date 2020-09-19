@@ -106,10 +106,45 @@ if (isset($_GET['sinoca'])) {
 			$html_select_node_option.='<option value="'.$fila['idsituacionnodo'].'">'.$fila['situacionnodo'].'</option>';
 		}
 
+				$FILTER="";
+				$index_area=0;
+				$index_node=0;
+
+				if(isset($_POST['BTN_SEARCH_FILTER'])){
+					
+					if(isset($_POST['areamp']) && $_POST['areamp']!=""){
+						
+						if($_POST['areamp']!=0){			
+								$index_area=$_POST['areamp']; 						
+								$FILTER="WHERE mp.idarea=".$_POST['areamp'];
+						}
+					}
+
+					if(isset($_POST['sinoca']) && $_POST['sinoca']!=""){ 
+
+						if($_POST['sinoca']!=0){
+							
+							$index_node=$_POST['sinoca'];
+
+							if($FILTER!="")
+							{ 
+								$FILTER.=" AND "; 
+							}
+							else{
+								$FILTER.=" WHERE ";
+							}
+
+							$FILTER.="mp.idsituacionnodo=".$_POST['sinoca'];
+						}
+					}
+		
+					//echo $FILTER;
+				}
+
 		
 		 ?>
 		 <div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 form-group">
 				<form action="mapeosat.php" method="POST" class="form-inline">
 					<div class="form-group">
 						<label for="">Situacion del nodo</label>
@@ -129,6 +164,11 @@ if (isset($_GET['sinoca'])) {
 						<button class="btn btn-primary" type="submit" name="BTN_SEARCH_FILTER">Buscar</button>
 					</div>
 				</form>
+				<hr/>
+			</div>
+			<div class="form-group col-lg-12" style="display:flex; justify-content:end;">
+			<a style="margin-left:10px;" href="imprimir.tabla.mapeosat.php?valor=<?php echo $index_area; ?>&&area=<?php echo $index_node; ?>" class="btn btn-danger" target="_Blank"><i class="fa fa-print"></i> Imprimir esta tabla</a>
+
 			</div>
 		</div>
 		<br>
@@ -179,40 +219,7 @@ if (isset($_GET['sinoca'])) {
                             
 							<?php
  
-								$FILTER="";
-								$index_area=0;
-								$index_node=0;
-
-								if(isset($_POST['BTN_SEARCH_FILTER'])){
-									
-								 	if(isset($_POST['areamp']) && $_POST['areamp']!=""){
-										
-										if($_POST['areamp']!=0){			
-	   										  $index_area=$_POST['areamp']; 						
-											  $FILTER="WHERE mp.idarea=".$_POST['areamp'];
-										}
-									}
-
-								 	if(isset($_POST['sinoca']) && $_POST['sinoca']!=""){ 
-
-										 if($_POST['sinoca']!=0){
-											
-											$index_node=$_POST['sinoca'];
-
-											if($FILTER!="")
-											{ 
-												$FILTER.=" AND "; 
-											}
-											else{
-											  $FILTER.=" WHERE ";
-											}
-
-  											$FILTER.="mp.idsituacionnodo=".$_POST['sinoca'];
-										 }
-									}
-						
-									//echo $FILTER;
-								}
+								
 
 								//mp.idno,mp.nomenclaturanodo,mp.nopuertopatchpanel,mp.puertoswitch,mp.observaciones
 
