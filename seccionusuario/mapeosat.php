@@ -235,7 +235,7 @@ if (isset($_GET['sinoca'])) {
 								INNER JOIN administracion adm ON mp.idnopatchpanel=adm.idadministracion 
 								INNER JOIN area ar ON mp.idnopatchpanel=ar.idarea 
 								INNER JOIN vlan vl ON mp.idnopatchpanel=vl.idvlan 
-								INNER JOIN actividad act ON mp.idnopatchpanel=act.idactividad
+								INNER JOIN actividad act ON mp.idactividad=act.idactividad
 								INNER JOIN situacionnodo node ON mp.idsituacionnodo=node.idsituacionnodo
 								$FILTER
 								";
@@ -256,7 +256,7 @@ if (isset($_GET['sinoca'])) {
 										<td>'.$fila['nopatchpanel'].'</td>
 										<td>'.$fila['noswitch'].'</td>
 										<td>'.$fila['serieswitch'].'</td>
-										<td>'.$fila['noswitch'].'</td>
+										<td>'.$fila['serieswitch'].'</td>
 										<td>'.$fila['puertoswitch'].'</td>
 										<td>'.$fila['tipoequipo'].'</td>
 										<td>'.$fila['administracion'].'</td>
