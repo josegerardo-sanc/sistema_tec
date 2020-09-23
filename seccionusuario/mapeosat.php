@@ -191,6 +191,23 @@ if (isset($_GET['sinoca'])) {
 				<div class="col-xs-12 col-sm-12" style="padding:10px;">
 					<?php 
 						//$mapeosat->TablaMapeosat($situacion, $area, $au[5]);
+
+						$query="
+								SELECT mp.*,switcch.ubicacionswitch,panel.nopatchpanel,sw.noswitch
+								,ser.serieswitch,equi.tipoequipo,adm.administracion,ar.area,vl.vlan,act.actividad ,node.situacionnodo
+								FROM mapeosat mp 
+								INNER JOIN ubicacionswitch switcch ON mp.idubicacionswitch=switcch.idubicacionswitch 
+								INNER JOIN nopatchpanel panel ON mp.idnopatchpanel=panel.idnopatchpanel 
+								INNER JOIN noswitch sw ON mp.idnopatchpanel=sw.idnoswitch 
+								INNER JOIN serieswitch ser ON mp.idnopatchpanel=ser.idserieswitch 
+								INNER JOIN tipoequipo equi ON mp.idnopatchpanel=equi.idtipoequipo 
+								INNER JOIN administracion adm ON mp.idnopatchpanel=adm.idadministracion 
+								INNER JOIN area ar ON mp.idnopatchpanel=ar.idarea 
+								INNER JOIN vlan vl ON mp.idnopatchpanel=vl.idvlan 
+								INNER JOIN actividad act ON mp.idactividad=act.idactividad
+								INNER JOIN situacionnodo node ON mp.idsituacionnodo=node.idsituacionnodo
+								$FILTER
+								";
 					 ?>
 
 						<table id="example" class="table" style="width: 100%;">
@@ -222,24 +239,6 @@ if (isset($_GET['sinoca'])) {
 								
 
 								//mp.idno,mp.nomenclaturanodo,mp.nopuertopatchpanel,mp.puertoswitch,mp.observaciones
-
-								$query="
-								SELECT mp.*,switcch.ubicacionswitch,panel.nopatchpanel,sw.noswitch
-								,ser.serieswitch,equi.tipoequipo,adm.administracion,ar.area,vl.vlan,act.actividad ,node.situacionnodo
-								FROM mapeosat mp 
-								INNER JOIN ubicacionswitch switcch ON mp.idubicacionswitch=switcch.idubicacionswitch 
-								INNER JOIN nopatchpanel panel ON mp.idnopatchpanel=panel.idnopatchpanel 
-								INNER JOIN noswitch sw ON mp.idnopatchpanel=sw.idnoswitch 
-								INNER JOIN serieswitch ser ON mp.idnopatchpanel=ser.idserieswitch 
-								INNER JOIN tipoequipo equi ON mp.idnopatchpanel=equi.idtipoequipo 
-								INNER JOIN administracion adm ON mp.idnopatchpanel=adm.idadministracion 
-								INNER JOIN area ar ON mp.idnopatchpanel=ar.idarea 
-								INNER JOIN vlan vl ON mp.idnopatchpanel=vl.idvlan 
-								INNER JOIN actividad act ON mp.idactividad=act.idactividad
-								INNER JOIN situacionnodo node ON mp.idsituacionnodo=node.idsituacionnodo
-								$FILTER
-								";
-
 								$data=$metodos->select($query);
 								$html_tr="";
 								//echo "<pre>";
@@ -251,11 +250,13 @@ if (isset($_GET['sinoca'])) {
 									$data_db[]=$fila;
 								    //print_r($fila);
 									$html_tr.='<tr role="row" class="odd" >
-										<td class="sorting_1">'.$fila['nomenclaturanodo'].'</td>
+										<td class="sorting_1">'
+										.$fila['nomenclaturanodo'].
+										'</td>
 										<td>'.$fila['ubicacionswitch'].'</td>
 										<td>'.$fila['nopatchpanel'].'</td>
+										<td>'.$fila['nopuertopatchpanel'].'</td>
 										<td>'.$fila['noswitch'].'</td>
-										<td>'.$fila['serieswitch'].'</td>
 										<td>'.$fila['serieswitch'].'</td>
 										<td>'.$fila['puertoswitch'].'</td>
 										<td>'.$fila['tipoequipo'].'</td>
