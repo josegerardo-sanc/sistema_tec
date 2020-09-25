@@ -198,11 +198,11 @@ if (isset($_GET['sinoca'])) {
 								FROM mapeosat mp 
 								INNER JOIN ubicacionswitch switcch ON mp.idubicacionswitch=switcch.idubicacionswitch 
 								INNER JOIN nopatchpanel panel ON mp.idnopatchpanel=panel.idnopatchpanel 
-								INNER JOIN noswitch sw ON mp.idnopatchpanel=sw.idnoswitch 
-								INNER JOIN serieswitch ser ON mp.idnopatchpanel=ser.idserieswitch 
+								INNER JOIN noswitch sw ON mp.idnoswitch=sw.idnoswitch 
+								INNER JOIN serieswitch ser ON mp.idserieswitch=ser.idserieswitch 
 								INNER JOIN tipoequipo equi ON mp.idtipoequipo=equi.idtipoequipo 
-								INNER JOIN administracion adm ON mp.idnopatchpanel=adm.idadministracion 
-								INNER JOIN area ar ON mp.idnopatchpanel=ar.idarea 
+								INNER JOIN administracion adm ON mp.idadministracion=adm.idadministracion 
+								INNER JOIN area ar ON mp.idarea=ar.idarea 
 								INNER JOIN vlan vl ON mp.idvlan=vl.idvlan 
 								INNER JOIN actividad act ON mp.idactividad=act.idactividad
 								INNER JOIN situacionnodo node ON mp.idsituacionnodo=node.idsituacionnodo
