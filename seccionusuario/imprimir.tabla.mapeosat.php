@@ -51,23 +51,24 @@ $area = $_GET['area'];
 		$FILTER.="mp.idsituacionnodo=".$valor;
 	}
 
+	$query="
+	SELECT mp.*,switcch.ubicacionswitch,panel.nopatchpanel,sw.noswitch
+	,ser.serieswitch,equi.tipoequipo,adm.administracion,ar.area,vl.vlan,act.actividad ,node.situacionnodo
+	FROM mapeosat mp 
+	INNER JOIN ubicacionswitch switcch ON mp.idubicacionswitch=switcch.idubicacionswitch 
+	INNER JOIN nopatchpanel panel ON mp.idnopatchpanel=panel.idnopatchpanel 
+	INNER JOIN noswitch sw ON mp.idnoswitch=sw.idnoswitch 
+	INNER JOIN serieswitch ser ON mp.idserieswitch=ser.idserieswitch 
+	INNER JOIN tipoequipo equi ON mp.idtipoequipo=equi.idtipoequipo 
+	INNER JOIN administracion adm ON mp.idadministracion=adm.idadministracion 
+	INNER JOIN area ar ON mp.idarea=ar.idarea 
+	INNER JOIN vlan vl ON mp.idvlan=vl.idvlan 
+	INNER JOIN actividad act ON mp.idactividad=act.idactividad
+	INNER JOIN situacionnodo node ON mp.idsituacionnodo=node.idsituacionnodo
+	$FILTER
+	";
 
-$query="
-		SELECT mp.*,switcch.ubicacionswitch,panel.nopatchpanel,sw.noswitch
-		,ser.serieswitch,equi.tipoequipo,adm.administracion,ar.area,vl.vlan,act.actividad ,node.situacionnodo
-		FROM mapeosat mp 
-		INNER JOIN ubicacionswitch switcch ON mp.idubicacionswitch=switcch.idubicacionswitch 
-		INNER JOIN nopatchpanel panel ON mp.idnopatchpanel=panel.idnopatchpanel 
-		INNER JOIN noswitch sw ON mp.idnopatchpanel=sw.idnoswitch 
-		INNER JOIN serieswitch ser ON mp.idnopatchpanel=ser.idserieswitch 
-		INNER JOIN tipoequipo equi ON mp.idnopatchpanel=equi.idtipoequipo 
-		INNER JOIN administracion adm ON mp.idnopatchpanel=adm.idadministracion 
-		INNER JOIN area ar ON mp.idnopatchpanel=ar.idarea 
-		INNER JOIN vlan vl ON mp.idnopatchpanel=vl.idvlan 
-		INNER JOIN actividad act ON mp.idnopatchpanel=act.idactividad
-		INNER JOIN situacionnodo node ON mp.idsituacionnodo=node.idsituacionnodo
-		$FILTER
-		";
+		
 $cm = $mapeosat->select($query);
 
 $filas = mysqli_num_rows($cm);
@@ -98,9 +99,9 @@ while ($a = $cm->fetch_assoc()) {
 		$pdf->Cell(20,5,utf8_decode($a['nomenclaturanodo']),1,0,'J');
 		$pdf->Cell(20,5,utf8_decode($a['ubicacionswitch']),1,0,'J');
 		$pdf->Cell(17,5,utf8_decode($a['nopatchpanel']),1,0,'J');
-		$pdf->Cell(24,5,utf8_decode($a['noswitch']),1,0,'J');
-		$pdf->Cell(15,5,utf8_decode($a['serieswitch']),1,0,'J');
-		$pdf->Cell(20,5,utf8_decode($a['noswitch']),1,0,'J');
+		$pdf->Cell(24,5,utf8_decode($a['nopuertopatchpanel']),1,0,'J');
+		$pdf->Cell(15,5,utf8_decode($a['noswitch']),1,0,'J');
+		$pdf->Cell(20,5,utf8_decode($a['serieswitch']),1,0,'J');
 		$pdf->Cell(15,5,utf8_decode($a['puertoswitch']),1,0,'J');
 		$pdf->Cell(20,5,utf8_decode($a['tipoequipo']),1,0,'J');
 		$pdf->Cell(20,5,utf8_decode($a['administracion']),1,0,'J');
